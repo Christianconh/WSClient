@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import apiClient.Test;
+import jakarta.ws.rs.client.ResponseProcessingException;
+import models.ResGetCategorias;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -43,6 +48,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 350, 450);
 		contentPane = new JPanel();
@@ -76,9 +82,21 @@ public class Login extends JFrame {
 		JButton btnAcceder = new JButton("Acceder");
 		btnAcceder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WSClient client = new WSClient();
-				client.setVisible(true);
-				dispose();
+//				WSClient client = new WSClient();
+//				client.setVisible(true);
+//				dispose();
+				ResGetCategorias res = new ResGetCategorias();
+				try {
+					Test test = new Test();
+					test.init();
+					res = test.test();
+					System.out.println(res);
+				}catch(ResponseProcessingException err) {
+					System.out.println(err);
+					
+				} finally {
+					
+				}
 			}
 		});
 		btnAcceder.setBounds(118, 277, 89, 23);
