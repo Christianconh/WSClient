@@ -80,8 +80,8 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				WSClient client = new WSClient();
 				client.setVisible(true);
-				dispose();			
-			}
+				dispose();
+				}
 		});
 		btnAcceder.setBounds(118, 277, 89, 23);
 		contentPane.add(btnAcceder);
