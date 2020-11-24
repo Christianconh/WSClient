@@ -60,7 +60,7 @@ public class WSClient extends JFrame {
 			
 		});
 		
-		btnConsultarCategoria.setBounds(100, 33, 133, 40);
+		btnConsultarCategoria.setBounds(88, 11, 160, 40);
 		contentPane.add(btnConsultarCategoria);
 		
 		JButton btnConsultarProducto = new JButton("Consultar Producto");
@@ -73,7 +73,7 @@ public class WSClient extends JFrame {
 		});
 		btnConsultarProducto.setBackground(new Color(30, 144, 255));
 		btnConsultarProducto.setForeground(new Color(0, 0, 0));
-		btnConsultarProducto.setBounds(100, 100, 133, 40);
+		btnConsultarProducto.setBounds(88, 76, 160, 40);
 		contentPane.add(btnConsultarProducto);
 		
 		JButton btnRegistrarPRoducto = new JButton("Registrar Producto");
@@ -85,7 +85,7 @@ public class WSClient extends JFrame {
 			}
 		});
 		btnRegistrarPRoducto.setBackground(new Color(30, 144, 255));
-		btnRegistrarPRoducto.setBounds(100, 162, 133, 40);
+		btnRegistrarPRoducto.setBounds(88, 135, 160, 40);
 		contentPane.add(btnRegistrarPRoducto);
 		
 		JButton btnNewButton = new JButton("Actualizar Producto");
@@ -97,16 +97,19 @@ public class WSClient extends JFrame {
 			}
 		});
 		btnNewButton.setBackground(new Color(30, 144, 255));
-		btnNewButton.setBounds(100, 228, 133, 40);
+		btnNewButton.setBounds(88, 206, 160, 40);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Actualizar Pass");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				ActualizarPass pass =  new ActualizarPass();
+				pass.setVisible(true);
+				dispose();
 			}
 		});
 		btnNewButton_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1.setBounds(100, 292, 133, 40);
+		btnNewButton_1.setBounds(88, 274, 160, 40);
 		contentPane.add(btnNewButton_1);
 	}
 }

@@ -6,6 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import apiClient.RequestService;
+import models.ResponseService;
+import models.ResponseServiceMap;
+
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -21,6 +27,8 @@ public class ConsultarISBN extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtISBN;
+	private JTextField txtUsuario;
+	private JTextField txtPass;
 
 	/**
 	 * Launch the application.
@@ -51,20 +59,16 @@ public class ConsultarISBN extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Ingresa ISBN:");
-		lblNewLabel.setBounds(29, 21, 146, 14);
+		lblNewLabel.setBounds(29, 130, 146, 14);
 		contentPane.add(lblNewLabel);
 		
 		txtISBN = new JTextField();
-		txtISBN.setBounds(29, 43, 295, 20);
+		txtISBN.setBounds(29, 146, 295, 20);
 		contentPane.add(txtISBN);
 		txtISBN.setColumns(10);
 		
-		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(140, 68, 89, 23);
-		contentPane.add(btnBuscar);
-		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(29, 102, 295, 139);
+		textArea.setBounds(29, 210, 295, 139);
 		contentPane.add(textArea);
 		
 		JButton btnRegresar = new JButton("Regresar");
@@ -75,11 +79,51 @@ public class ConsultarISBN extends JFrame {
 				dispose();
 			}
 		});
-		btnRegresar.setBounds(235, 298, 89, 23);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RequestService producto = new RequestService();	
+				ResponseServiceMap prod = producto.getDetails(txtUsuario.getText(), txtPass.getText(), txtISBN.getText());				
+				textArea.setText("code: "+prod.code + "\n" + "message:" + prod.message + "\n" + "data:" + prod.data +"\n" + "status:" + prod.status);
+				
+			}
+		});
+		btnBuscar.setBounds(139, 176, 89, 23);
+		contentPane.add(btnBuscar);
+		
+		
+		btnRegresar.setBounds(235, 360, 89, 23);
 		contentPane.add(btnRegresar);
 		
 		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(239, 68, 89, 23);
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RequestService productoE = new RequestService();
+				ResponseService deleteProd = productoE.deleteProd(txtUsuario.getText(), txtPass.getText(), txtISBN.getText());
+				
+				textArea.setText("code: "+deleteProd.code + "\n" + "message:" + deleteProd.message + "\n"  + "status:" + deleteProd.status);
+			}
+		});
+		btnEliminar.setBounds(235, 176, 89, 23);
 		contentPane.add(btnEliminar);
+		
+		JLabel lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setBounds(29, 22, 70, 14);
+		contentPane.add(lblUsuario);
+		
+		txtUsuario = new JTextField();
+		txtUsuario.setBounds(29, 38, 295, 20);
+		contentPane.add(txtUsuario);
+		txtUsuario.setColumns(10);
+		
+		JLabel lblPass = new JLabel("Contrase\u00F1a");
+		lblPass.setBounds(29, 66, 99, 14);
+		contentPane.add(lblPass);
+		
+		txtPass = new JTextField();
+		txtPass.setBounds(29, 91, 295, 20);
+		contentPane.add(txtPass);
+		txtPass.setColumns(10);
 	}
 }
